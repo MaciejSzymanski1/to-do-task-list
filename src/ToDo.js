@@ -10,14 +10,7 @@ class ToDo extends Component {
     };
 
     addTask = (taskContent) => {
-        const symbols = ['[!]', '***'];
-        if (symbols.some(char => taskContent.includes(char))) {
-            symbols.forEach(
-                symbol => taskContent = taskContent.replace(symbol, '')
-            )
-        }
         if (taskContent.trim() === '') {
-            throw new Error('Task content cannot be empty');
         }
         this.setState({
             tasks: this.state.tasks.concat({
@@ -42,17 +35,7 @@ class ToDo extends Component {
         localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
     }
 
-    deleteTasks = (taskIds) => {
-        this.setState({
-            tasks: this.state.tasks.filter(
-                task => !taskIds.includes(task.id)
-            )
-        })
-    };
-
-
     handleDeleteClick = event => {
-        console.log(event.target.dataset.taskId);
         this.setState({
             tasks: this.state.tasks.filter(
                 task => task.id !== parseInt(event.target.dataset.taskId, 10)
@@ -61,16 +44,20 @@ class ToDo extends Component {
     };
 
     render() {
+        const todosName = this.state.tasks.filter(
+            task =>
+                task.content.includes(
+                    this.props.BySearch
+                )
+        );
         return (
             <div>
-
                 <ToDoBox
                     addTask={this.addTask}
                 />
 
                 <ToDoList
-                    tasks={this.state.tasks}
-                    deleteTasks={this.deleteTasks}
+                    tasks={todosName}
                     handleDeleteClick={this.handleDeleteClick}
                 />
             </div>

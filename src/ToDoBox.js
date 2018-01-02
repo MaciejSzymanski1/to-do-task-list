@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 
 class ToDoBox extends Component {
     state = {
-        taskInputValue: '',
-        formError: null
+        taskInputValue: ''
     };
 
     handleChange = (event) => {
@@ -14,18 +13,9 @@ class ToDoBox extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        try {
             this.props.addTask(
                 this.state.taskInputValue
             );
-            this.setState({
-                formError: null
-            })
-        } catch (error) {
-            this.setState({
-                formError: error
-            })
-        }
         this.setState({
             taskInputValue: ''
         })
@@ -34,9 +24,6 @@ class ToDoBox extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                {
-                    this.state.formError && <p>{this.state.formError.message}</p>
-                }
                 <input
                     value={this.state.taskInputValue}
                     onChange={this.handleChange}

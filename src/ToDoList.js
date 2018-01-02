@@ -1,20 +1,6 @@
 import React, { Component } from 'react'
 
 class ToDoList extends Component {
-    state = {
-        checkedTaskIds: []
-    };
-
-    componentWillMount() {
-        this.setState({
-            checkedTaskIds: JSON.parse(localStorage.getItem('checkedTaskIds')) || []
-        })
-    }
-
-    componentDidUpdate() {
-        localStorage.setItem('checkedTaskIds', JSON.stringify(this.state.checkedTaskIds))
-    }
-
     render() {
         return (
             <div>

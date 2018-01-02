@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 
-import ToDo from './ToDo'
+import ToDoApp from './ToDoApp'
 
 import registerServiceWorker from './registerServiceWorker';
 
 
 ReactDOM.render(
         <div>
-            <ToDo />
+            <ToDoApp />
         </div>,
     document.getElementById('root')
 );
